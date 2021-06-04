@@ -1,5 +1,5 @@
 import {takeEvery,takeLatest,call,put} from 'redux-saga/effects'
-import {doneMarks} from '../allAction'
+import {doneMarks,} from '../redux/allAction'
 import axios from 'axios'
 
  
@@ -9,7 +9,7 @@ function* fetchMarks(params){
       yield put(doneMarks(marksResult))
      // yield put(doneMarks('75'))
     }catch(e){
-
+      // yield put(doneMarks(marksResult))
     }
 }
 
@@ -19,6 +19,6 @@ export function* waitForFetchMarks(){
 
 const apiData = async (first,id,third)=>{
   console.log(first,id,third)
-  const apiRecord = await axios.get('http://localhost/api/article-list')
+  const apiRecord = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
   return apiRecord.data.studentMarks
 }

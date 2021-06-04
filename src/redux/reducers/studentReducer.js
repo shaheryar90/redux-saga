@@ -1,63 +1,81 @@
 
 
-const studentReducer = (state='',action)=>{
-    
-  switch(action.type){
+const studentReducer = (state = { isLoading: false, error: null }, action,) => {
+
+  switch (action.type) {
     case "SET_MAIL":
       state = {
         ...state,
-        name:action.payload
+        name: action.payload
       }
       return state
-    break;
+      break;
 
-    case "SET_SID": 
+    case "SET_SID":
       state = {
         ...state,
-        studentId:action.payload
+        studentId: action.payload
       }
       return state
-    break;
+      break;
 
-    case "GET_MARKS": 
+    case "GET_MARKS":
       state = {
         ...state,
-        marks:action.payload
+        marks: action.payload
       }
       return state
-    break;
+      break;
 
-    case "GET_MARKS_DONE": 
+    case "GET_MARKS_DONE":
       state = {
         ...state,
-        marks:action.payload
+        marks: action.payload
       }
       return state
-    break;
+      break;
 
 
-    case "GET_AGE": 
+    case "GET_AGE":
       state = {
         ...state,
-        age:action.payload
+        age: action.payload,
+        isLoading: true
       }
       return state
-    break;
+      break;
 
-    case "GET_AGE_DONE": 
+
+
+
+    case "GET_AGE_DONE":
+      console.log(action.payload, "action")
+      const filterData = action.payload.filter((v, i, a) => a.findIndex(t => (t.userId === v.userId)) === i)
+// v=items ,i =index ,a= users array
+      console.log(filterData)
       state = {
         ...state,
-        age:action.payload
+        age: filterData,
+        isLoading: false
       }
       return state
-    break;
-  
-
-    default: 
+      break;
+    case "ERROR_AGE_DONE":
+      state = {
+        ...state,
+        age: {},
+        isLoading: false,
+        error: action.payload
+      }
       return state
- 
+      break;
+
+
+    default:
+      return state
+
   }
-  
+
 }
 
 export default studentReducer

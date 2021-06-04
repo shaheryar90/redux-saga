@@ -51,15 +51,25 @@ export const doneMarks = (marks)=>{
 
 
 export const getAge = (age)=>{
+    // console.log(age,"Age")
     return {
         type:'GET_AGE',
         payload:age
     } 
 }
+//type constant go to on saga and reducer
 
 export const doneAge = (age)=>{
+    // console.log(age,"Updated age")
     return {
         type:'GET_AGE_DONE',
+        payload:age
+    } 
+}
+export const errorDoneAge = (age)=>{
+    console.log(age,"error in age")
+    return {
+        type:'ERROR_AGE_DONE',
         payload:age
     } 
 }

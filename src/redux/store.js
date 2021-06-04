@@ -16,25 +16,10 @@ const mainReducer = combineReducers({
   student:studentReducer 
 }) 
  
-const  commonData = { 
-  user:{
-    userId:'UI9898',
-    name:'Ram Singhssssss', 
-    department:['IT','TECH']
-  },
-  student:{
-    studentId:'CSS117',
-    name:'Ramesh Singh',
-    email:'mahesh@gmail.com',
-    marks:80,
-    age:20,
-    subject:['Math','English']
-  }
-}
 
 //const store  = createStore(mainReducer,commonData,composeWithDevTools(applyMiddleware(thunk)))
 
-const store  = createStore(mainReducer,commonData,composeWithDevTools(applyMiddleware(sagaMiddleware)))
+const store  = createStore(mainReducer,composeWithDevTools(applyMiddleware(sagaMiddleware)))
 
 sagaMiddleware.run(rootSaga)
 
